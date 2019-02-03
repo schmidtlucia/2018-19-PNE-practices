@@ -1,6 +1,7 @@
 #Exercise 5 of session 1
 
-def fibonacci():
+#Option 1
+def fibonacci1():
     n = int(input('Enter the n-th fibonacci number to calculate: '))
     a, b = 0, 1
     num = 2
@@ -17,4 +18,13 @@ def fibonacci():
         if num == n:
             print(b)
 
-fibonacci()
+#Option 2
+
+def fibonacci2():
+    n = int(input('Enter the n-th fibonacci number to calculate: '))
+    from math import sqrt
+    sol = (((1 + sqrt(5))**(n-1)) - (1 - sqrt(5))**(n-1)) / ((2**(n-1))*sqrt(5))
+    print(int(sol))
+
+fibonacci1()
+#fibonacci2()
