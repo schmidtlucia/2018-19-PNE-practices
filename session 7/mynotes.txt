@@ -1,0 +1,49 @@
+12. Feb. 2019
+
+Programing II
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+***Client-Server-Modell***
+Client sends request to Server
+Server sends a response to that client and thousands more
+If there is no client and therefor no request, it is not aproblem, it will still be active waiting
+The problem is when a client sends a request and there is no server to attend it
+First we need to activate the server and check it, then the client
+Both programs are working in a computers, torre, general, mobile phone...
+In those computers there may be also other servers and other apps working
+Usually we dont have two computers, so both can be ran in the same machine and the model will still work out
+There is no wire to connect both programs, we use a network that we call internet that interconnects both
+Inside the internet there are many computers that are divided in groups called networks. For instance all the computers in the lab are one local network
+Therefoe when we need to connect the server we use the 'lines'
+One computer can have many network interfaces called IP addresses
+An IP address is not like an identification, an IP address changes depending on to which computer we connect
+
+My phone IP address at URJC university is: 10.3.52.186
+
+++Exercise 1++
+Check the IP adress at home
+
+In the terminal write: ifconfig to know the Ip address in the second paragraph
+
+The IP address of this computer is: 212.128.253.92
+The teacher's computer's IP address is: 212.128.253.64
+
+
+Ping: command that asks if the computer works ---> ping
+Ping time 8.8.8.8 = 3.64ms
+Ping time of my own computer (212.128.253.92): 0.02ms
+Ping time of Alberto's computer (212.128.253.91): 0.578ms
+Ping to my phone: 2.74ms
+
+We cant try to connect through IP addresses because it is impossible to memorize so many IPs
+Therefore, we use URL addresses --> identifier of network interface for humans
+
+Lets ping Google (216.58.211.228): time=3.47ms ------>> the url gives you in the terminal the IP address because the internet works with IP addresses
+and not with URL addresses.
+
+Therefore for hte client-server-method we need the IP address
+We use the Port, usually web severs are in the port 80. In the same IP address there may be other servers, therefore we need to know its port, f. ex. 8080
+To connect a server, as a client, we need to know both numbers, the IP adress and the port of its sever
+If we dont write the port, the connection will be refused
+
+THIS IS A TEXT EXAMPLE FOR ADDING TO MYFILE
