@@ -22,6 +22,7 @@ def process_client(cs):
     # With the following code, the server will read the information given in the html file
     file = open('index.html', 'r')
     content = file.read()
+    file.close()
 
     status_line = 'HTTP/1.1 200 ok\r\n'  # Our response must have the correct format of HTTP
 
