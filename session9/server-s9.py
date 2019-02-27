@@ -3,7 +3,7 @@ import socket
 import termcolor
 
 
-PORT = 8080
+PORT = 8085
 IP = '212.128.253.88'
 MAX_OPEN_REQUEST = 5
 
@@ -18,10 +18,13 @@ def process_client(cs):
 
     # Sending the message back to the client
     # (bc we are an echo server
-    answer = input('Answer from server: ')
-    cs.send(str.encode(answer))
+    if msg == 'EXIT':
+        cs.close()
+    else:
+        answer = input('Answer from server: ')
+        cs.send(str.encode(answer))
 
-    cs.close()
+        cs.close()
 
 
 # Create a socket for connecting with the clients
