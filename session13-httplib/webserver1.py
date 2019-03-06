@@ -19,18 +19,6 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             file = open('index.html', 'r')
             content = file.read()
             file.close()
-        elif req_line[1] == '/pink.html':
-            file = open('pink.html', 'r')
-            content = file.read()
-            file.close()
-        elif req_line[1] == '/blue.html':
-            file = open('blue.html', 'r')
-            content = file.read()
-            file.close()
-        elif req_line[1] == '/green.html':
-            file = open('green.html', 'r')
-            content = file.read()
-            file.close()
         else:
             file = open('error.html', 'r')
             content = file.read()
