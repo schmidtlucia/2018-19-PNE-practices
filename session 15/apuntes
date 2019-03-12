@@ -1,0 +1,6 @@
+The action is an attribute, we usually use echo.
+Method is another  tells the client HOW to send information to the server, in this case GET
+For making a textbox as an input in, we write in the code: <input type="text" name="msg">.
+The word 'text' is a special word for specifying that we want a textbox and for our coding we called it 'msg'.
+For making the click button to submit the text in the textbox, we write: <input type="submit" value="SEND".
+The word 'submit' is also a key word por making the button, we call it for our coding 'SEND'.
