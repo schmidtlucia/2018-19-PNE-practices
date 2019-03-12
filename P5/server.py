@@ -3,7 +3,7 @@
 import http.server
 import socketserver
 
-PORT = 8090
+PORT = 8085
 
 # a Handler is a class. We call it whenever there is a request from a client
 
@@ -22,11 +22,11 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             file = open('index.html', 'r')
             content = file.read()
             file.close()
-        elif req_line[1] == '/pink':
+        elif req_line[1] == '/pink.html':
             file = open('pink.html', 'r')
             content = file.read()
             file.close()
-        elif req_line[1] == '/blue':
+        elif req_line[1] == '/blue.html':
             file = open('blue.html', 'r')
             content = file.read()
             file.close()
