@@ -24,9 +24,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):  # We are creating object
         self.send_header('  Content-Length', len(str.encode(contents)))
         self.end_headers()
 
-
         #  create a response different from happy server
-
         req_line = self.requestline.split(" ")[1]
         if req_line != '':
             if req_line == '/':
@@ -39,11 +37,17 @@ class TestHandler(http.server.BaseHTTPRequestHandler):  # We are creating object
                 file = open('form-server1.html', 'r')
                 content = file.read()
             else:
-                file = open('form3.html', 'r')
-                content = file.read()
+                msg = req_line.partition('=')
+                if msg[0] == '/echo?msg':
+                    file = open('form3.html', 'r')
+                    content = file.read()
+                else:
+                    file = open('error.html', 'r')
+                    content = file.read()
             self.wfile.write(str.encode(content))
 
 # -- MAIN PROGRAM
+
 
 with socketserver.TCPServer(("", PORT), TestHandler) as httpd:  # an empty IP adress means: 'use your own IP'
     print('Serving at PORT {}'.format(PORT))
