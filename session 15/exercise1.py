@@ -14,7 +14,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):  # We are creating object
         # -- printing the request line
         termcolor.cprint(self.requestline, 'green')
 
-        f = open('form-server1.html', 'r')
+        f = open('form1.html', 'r')
         contents = f.read()
 
         # -- creating a happy server response
@@ -28,13 +28,13 @@ class TestHandler(http.server.BaseHTTPRequestHandler):  # We are creating object
         req_line = self.requestline.split(" ")[1]
         if req_line != '':
             if req_line == '/':
-                file = open('form-server1.html', 'r')
+                file = open('form1.html', 'r')
                 content = file.read()
-            elif req_line == '/form-server1.html':
-                file = open('form-server1.html', 'r')
+            elif req_line == '/form1.html':
+                file = open('form1.html', 'r')
                 content = file.read()
             elif req_line == '/echo?msg=':
-                file = open('form-server1.html', 'r')
+                file = open('form1.html', 'r')
                 content = file.read()
             else:
                 msg = req_line.partition('=')
@@ -42,7 +42,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):  # We are creating object
                     file = open('form3.html', 'r')
                     content = file.read()
                 else:
-                    file = open('error.html', 'r')
+                    file = open('error-ex1.html', 'r')
                     content = file.read()
             self.wfile.write(str.encode(content))
 
