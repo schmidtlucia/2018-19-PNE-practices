@@ -26,33 +26,26 @@ class TestHandler(http.server.BaseHTTPRequestHandler):  # We are creating object
 
         #  create a response different from happy server
         req_line = self.requestline.split(" ")[1]
-        if req_line != '':
-            if req_line == '/':
-                file = open('form4.html', 'r')
+        if req_line == '/' or req_line == '/form4.html' or req_line == '/echo?msg=':
+            file = open('form4.html', 'r')
+            content = file.read()
+        else:
+            msg = req_line.split('=')
+            if msg[0] == '/echo?msg':
+                file = open('form5.html', 'r')
                 content = file.read()
-            elif req_line == '/form4.html':
-                file = open('form4.html', 'r')
-                content = file.read()
-            elif req_line == '/echo?msg=':
-                file = open('form4.html', 'r')
-                content = file.read()
-            else:
-                msg = req_line.split('=')
-                if msg[0] == '/echo?msg':
-                    file = open('form5.html', 'r')
-                    content = file.read()
-                    final_msg = msg[1]
-                    if final_msg[-4:] == '&chk':
-                        final_msg = final_msg.replace('&chk','').upper()
-                    content = content.replace('###', final_msg)
+                final_msg = msg[1]
+                if final_msg[-4:] == '&chk':
+                    final_msg = final_msg.replace('&chk', '').upper()
+                content = content.replace('###', final_msg)
 
-                else:
-                    file = open('error-ex2.html', 'r')
-                    content = file.read()
-            self.wfile.write(str.encode(content))
+            else:
+                file = open('error-ex2.html', 'r')
+                content = file.read()
+        self.wfile.write(str.encode(content))
+
 
 # -- MAIN PROGRAM
-
 
 with socketserver.TCPServer(("", PORT), TestHandler) as httpd:  # an empty IP adress means: 'use your own IP'
     print('Serving at PORT {}'.format(PORT))

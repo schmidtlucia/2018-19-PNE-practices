@@ -26,27 +26,20 @@ class TestHandler(http.server.BaseHTTPRequestHandler):  # We are creating object
 
         #  create a response different from happy server
         req_line = self.requestline.split(" ")[1]
-        if req_line != '':
-            if req_line == '/':
-                file = open('form1.html', 'r')
+        if req_line == '/' or req_line == '/form1.html' or req_line == '/echo?msg=':
+            file = open('form1.html', 'r')
+            content = file.read()
+        else:
+            msg = req_line.partition('=')
+            if msg[0] == '/echo?msg':
+                file = open('form3.html', 'r')
                 content = file.read()
-            elif req_line == '/form1.html':
-                file = open('form1.html', 'r')
-                content = file.read()
-            elif req_line == '/echo?msg=':
-                file = open('form1.html', 'r')
-                content = file.read()
-            else:
-                msg = req_line.partition('=')
-                if msg[0] == '/echo?msg':
-                    file = open('form3.html', 'r')
-                    content = file.read()
-                    content = content.replace('###', msg[2])
+                content = content.replace('###', msg[2])
 
-                else:
-                    file = open('error-ex1.html', 'r')
-                    content = file.read()
-            self.wfile.write(str.encode(content))
+            else:
+                file = open('error-ex1.html', 'r')
+                content = file.read()
+        self.wfile.write(str.encode(content))
 
 # -- MAIN PROGRAM
 
