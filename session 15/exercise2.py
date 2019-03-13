@@ -4,7 +4,7 @@ import http.server
 import socketserver
 import termcolor
 
-PORT = 8080
+PORT = 8081
 
 
 class TestHandler(http.server.BaseHTTPRequestHandler):  # We are creating objects that heritates the properties of the http.server library
@@ -37,10 +37,16 @@ class TestHandler(http.server.BaseHTTPRequestHandler):  # We are creating object
                 file = open('form4.html', 'r')
                 content = file.read()
             else:
-                msg = req_line.partition('=')
+                msg = req_line.split('=')
                 if msg[0] == '/echo?msg':
                     file = open('form5.html', 'r')
                     content = file.read()
+                    final_msg = msg[1]
+                    if final_msg[-4:] == '&chk':
+                        condition = True
+                        final_msg = final_msg.replace('&chk','').upper()
+                    content = content.replace('###', final_msg)
+
                 else:
                     file = open('error-ex2.html', 'r')
                     content = file.read()

@@ -4,7 +4,7 @@ import http.server
 import socketserver
 import termcolor
 
-PORT = 8089
+PORT = 8080
 
 
 class TestHandler(http.server.BaseHTTPRequestHandler):  # We are creating objects that heritates the properties of the http.server library
@@ -41,6 +41,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):  # We are creating object
                 if msg[0] == '/echo?msg':
                     file = open('form3.html', 'r')
                     content = file.read()
+                    content = content.replace('###', msg[2])
+
                 else:
                     file = open('error-ex1.html', 'r')
                     content = file.read()
