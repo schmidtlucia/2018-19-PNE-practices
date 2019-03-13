@@ -43,7 +43,6 @@ class TestHandler(http.server.BaseHTTPRequestHandler):  # We are creating object
                     content = file.read()
                     final_msg = msg[1]
                     if final_msg[-4:] == '&chk':
-                        condition = True
                         final_msg = final_msg.replace('&chk','').upper()
                     content = content.replace('###', final_msg)
 
