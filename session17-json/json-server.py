@@ -3,7 +3,7 @@ import socketserver
 import termcolor
 
 # Define the Server's port
-PORT = 8001
+PORT = 8080
 
 
 # Class with our Handler. It is a called derived from BaseHTTPRequestHandler

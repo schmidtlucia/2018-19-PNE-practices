@@ -4,7 +4,7 @@ import http.client
 import termcolor
 import json
 
-PORT = 8900
+PORT = 8080
 SERVER = 'localhost'
 
 print("\nConnecting to server: {}:{}\n".format(SERVER, PORT))
@@ -24,32 +24,31 @@ print("Response received!: {} {}\n".format(r1.status, r1.reason))
 
 # -- Read the response's body
 data1 = r1.read().decode("utf-8")
-print(data1)
 
 # -- Create a variable with the data,
 # -- form the JSON received
-people = json.loads(data1)
+person = json.loads(data1)
 
 print("CONTENT: ")
 
 # Print the information of all person in the data base
 
 termcolor.cprint("Total people in the data base: ", 'magenta', end='')
-print(len(people))
+print(len(person))
 
-for per in people:
+for per in person:
     print()
     per = str(per)
-    people = (people[per][0])
-    print(people)
+    person = (person[per][0])
+    print(person)
     termcolor.cprint("Name: ", 'green', end="")
-    print(people['Firstname'], people['Lastname'])
+    print(person['Firstname'], person['Lastname'])
 
     termcolor.cprint("Age: ", 'green', end="")
-    print(people['age'])
+    print(person['age'])
 
     # Get the phoneNumber list
-    phoneNumbers = people['phoneNumber']
+    phoneNumbers = person['phoneNumber']
 
     # Print the number of elements int the list
     termcolor.cprint("Phone numbers: ", 'green', end='')
