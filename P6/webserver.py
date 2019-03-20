@@ -3,7 +3,7 @@
 import http.server
 import socketserver
 import termcolor
-import Seq
+from Seq import Seq
 
 PORT = 8000
 
@@ -33,20 +33,35 @@ class TestHandler(http.server.BaseHTTPRequestHandler):  # We are creating object
         else:
             path = req_line.partition('?')[2]
             options = path.split('&')
-            msg = options[0]
-            if options[1][:3] == 'chk':
-                chk = options[1]
-                base = options[2]
-                operation = options[3]
-                file = open('form2.html', 'r')
-                content = file.read()
-                content = content.replace('---', msg[4:]).replace('--', chk).replace('-', base[5:]).replace('%', operation[10:])
+            msg = Seq(options[0][4:])
+            mensaje = str(options[0][4:])
+            if mensaje.strip('ACGT') == '':
+                if options[1] == 'chk=on':
+                    length = msg.len()
+                    base = str(options[2][5:])
+                    operation = options[3]
+                    if operation == 'operation=count':
+                        operation = msg.count(base)
+                    else:
+                        operation = msg.perc(base)
+
+                    file = open('form2.html', 'r')
+                    content = file.read()
+                    content = content.replace('----',mensaje).replace('--', str(length)).replace('-', base).replace('%', str(operation))
+                else:
+                    base = str(options[1][5:])
+                    operation = options[2]
+                    if operation == 'operation=count':
+                        operation = msg.count(base)
+                    else:
+                        operation = msg.perc(base)
+
+                    file = open('form2.html', 'r')
+                    content = file.read()
+                    content = content.replace('----', mensaje).replace('--', 'not asked').replace('-', base).replace('%', str(operation))
             else:
-                base = options[1]
-                operation = options[2]
-                file = open('form2.html', 'r')
+                file = open('error.html', 'r')
                 content = file.read()
-                content = content.replace('---', msg[4:]).replace('--', 'not asked').replace('-', base[5:]).replace('%', operation[10:])
 
         self.wfile.write(str.encode(content))
 
