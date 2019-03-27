@@ -3,7 +3,7 @@ import socketserver
 import termcolor
 
 # Define the Server's port
-PORT = 8080
+PORT = 8089
 
 
 # Class with our Handler. It is a called derived from BaseHTTPRequestHandler
@@ -18,8 +18,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         termcolor.cprint(self.requestline, 'green')
 
         # -- Parser the path
-        list_resource = self.path.split('?')
+        list_resource = self.path.split(' ')
         resource = list_resource[0]
+        print(resource)
 
         if resource == "/":
             f = open("index.html", 'r')
