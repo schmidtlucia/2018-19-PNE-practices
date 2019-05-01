@@ -13,11 +13,4 @@ IP = '212.128.253.64'
 while True:
     file = input('Please enter a message: ')
     s.connect((IP, PORT))
-
     s.send(str.encode(file))
-
-    msg = s.recv(2048).decode('utf-8')  #The number is the amount of bytes
-    print('Message from the server-LSS')
-    print(msg)
-
-    s.close()

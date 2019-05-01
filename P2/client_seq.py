@@ -2,18 +2,7 @@
 # Practice 2 -session 8
 
 import socket
-
-# CREATING CLASS Seq
-
-
-class Seq:
-    """A class for representing sequences"""
-    def __init__(self, strbases):
-        self.strbases = strbases
-
-    def reverse(self):  # Returns a new sequence, that is the reverse of the sequence given
-        rev_bases = self.strbases[::-1]
-        return Seq(rev_bases)
+from Seq import Seq
 
 
 # Creating a socket or communicating with the server
@@ -23,23 +12,21 @@ print('Socket created')
 
 # Same behaviour as a file
 
-PORT = 8086
+PORT = 8080
 IP = '212.128.253.88'
 
 # Connect to the server
 
-s.connect((IP,PORT))
+s.connect((IP, PORT))
 
 condition = True
 
 while condition:
 
     # Send a message to the server
-
-    msg2 = input('Message: ').lower()
-    msg2 = Seq(msg2)
-    msg_rev = str(msg2.reverse())
-    s.send(str.encode(msg2))  # encode is to translate the string into bytes
+    msg2 = Seq(input('Write a DNA-sequence: ').upper())
+    msg_rev = str(msg2.reverse().strbases)  # I need to write '.strbases' so the program reads it out of the Seq class and converts it into a str
+    s.send(str.encode(msg_rev))  # encode is to translate the string into bytes
     if msg2 == 'exit':
         condition = False
         s.close()
